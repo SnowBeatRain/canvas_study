@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="canvas" width="1060" height="620"></canvas>
+
+</body>
+<script>
+  var canvas = document.querySelector('#canvas');
+  var cxt = canvas.getContext('2d');
+  cxt.fillStyle = "#3470CB";
+  cxt.fillRect(0, 0, 1060, 620);
+
+
+  // 绘制快递柜文字
+  cxt.beginPath()
+  drawScreen()
+  cxt.closePath()
+
+  function drawScreen() {
+    // cxt.strokeStyle = '#374A68'; //边框颜色
+    cxt.fillStyle = '#374A68' //填充颜色
+    cxt.lineWidth = 4;
+    cxt.beginPath();
+    cxt.moveTo(40, 120);
+    cxt.lineTo(90, 120);
+    cxt.lineTo(90, 220);
+    cxt.lineTo(40, 220);
+    cxt.closePath();
+    cxt.fill();
+    cxt.font = "bold 20px 宋体"
+    cxt.fillStyle = "#fff"
+    cxt.fillText("快", 55, 150)
+    cxt.fillText("递", 55, 175)
+    cxt.fillText("柜", 55, 200)
+  }
+
+  /*
+   绘制竖直表格函数    水平表格和竖直表格形参中的行和列相反
+   beginX：开始横坐标
+   beginY：开视纵坐标
+   W:表格的宽
+   h:表格的高度
+   row: 几行
+   list:  几列
+  */
+  cxt.beginPath()
+  drawVerticalTab(50, 390, 20, 40, 1, 3)
+  cxt.closePath()
+
+  function drawVerticalTab(beginX, beginY, w, h, row, list) {
+    for (r = 1; r <= row; r++) { //控制画多少行
+      for (l = 1; l <= list; l++) { //控制画多少列
+        x = beginX + (r - 1) * w;
+        y = beginY + (l - 1) * h;
+        x_zuobiao = x; //字的横坐标
+        y_zuobiao = y + 25; //字的纵坐标
+        cxt.rect(x, y, w, h); //边框的四个点坐标
+        cxt.font = "bold 14px 宋体"
+        // cxt.fillStyle = '#0000ff' //填充颜色
+        cxt.strokeStyle = '#0000ff' //填充颜色        
+        cxt.fillText("33", x_zuobiao + w / 8 + 20, y_zuobiao);
+      }
+    }
+    cxt.stroke();
+  }
+  // 绘制水平表格函数
+  cxt.beginPath()
+  drawLevelTab(120,255,120,20,2,1)
+  cxt.closePath()
+
+  function drawLevelTab(beginX, beginY, w, h, list, row) {
+    for (r = 1; r <= row; r++) { //控制画多少行
+      for (l = 1; l <= list; l++) { //控制画多少列
+        x = beginX + (r - 1) * w;
+        y = beginY + (l - 1) * h;
+        x_zuobiao = x; //字的横坐标
+        y_zuobiao = y + 15; //字的纵坐标
+        cxt.fillRect(x, y, w, h); //边框的四个点坐标
+        cxt.font = "bold 14px 宋体"
+        cxt.fillStyle = '#0000ff' //填充颜色
+        // cxt.strokeStyle = '#fff' //填充颜色        
+        cxt.fillText(33, x_zuobiao + w / 2 - 7, y_zuobiao);
+      }
+    }
+    cxt.stroke();
+  }
+</script>
+
+</html>
