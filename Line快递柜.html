@@ -15,20 +15,92 @@
 <script>
   var canvas = document.querySelector('#canvas');
   var cxt = canvas.getContext('2d');
-  cxt.fillStyle = "#3470CB";
+  cxt.fillStyle = "#fff";
   cxt.fillRect(0, 0, 1060, 620);
+  var bgImg = new Image()
+  bgImg.src = "./bg.png"
+  bgImg.onload = function () {
+    // 放置背景图
+    cxt.drawImage(this, 0, 0)
+    // 绘制快递柜文字
+    cxt.beginPath()
+    drawScreen()
+    cxt.closePath()
 
+    //竖直表格
+    drawVerticalTab(50, 390, 20, 40, 3, 1, "#c3c3c3", 68, false)
+    drawVerticalTab(240, 115, 20, 40, 2, 1, "#c3c3c3", 77, false)
+    drawVerticalTab(172, 410, 20, 40, 2, 1, "#c3c3c3", 62, true)
+    drawVerticalTab(222, 370, 20, 40, 3, 1, "#c3c3c3", 61, false)
+    drawVerticalTab(340, 435, 20, 40, 1, 1, "#c3c3c3", 56, false)
+    drawVerticalTab(370, 435, 20, 40, 1, 1, "#c3c3c3", 36, false)
+    // 水平表格   一行一列
+    // drawLevelTab2(120, 255, 120, 20, 1, 1,"#c3c3c3", 73, false)  
+    drawLevelTab(120, 255, 120, 20, 1, 1, 73)
+    drawLevelTab(120, 288, 120, 20, 1, 1, 72)
+    drawLevelTab(120, 325, 120, 20, 1, 1, 71)
 
-  // 绘制快递柜文字
-  cxt.beginPath()
-  drawScreen()
-  cxt.closePath()
+    // 水平表格 一行多列
+    //  开始横坐标，开始纵坐标，单个宽度，单个高度，几行，几列，背景颜色，第一个数字，数字是否递增（true增加）
+    drawLevelTab2(160, 90, 40, 20, 1, 2, "#c3c3c3", 79, false)
+    drawLevelTab2(160, 200, 40, 20, 1, 2, "#c3c3c3", 74, true)
+    drawLevelTab2(82, 370, 40, 20, 1, 2, "#c3c3c3", 69, true)
+    drawLevelTab2(82, 490, 40, 20, 1, 2, "#c3c3c3", 65, false)
+    drawLevelTab2(250, 490, 40, 20, 1, 2, "#c3c3c3", 58, false)
+    drawLevelTab2(435, 330, 40, 20, 1, 7, "#c3c3c3", 55, false)
+    drawLevelTab2(435, 390, 40, 20, 1, 6, "#c3c3c3", 48, false)
+    drawLevelTab2(435, 410, 40, 20, 1, 6, "#c3c3c3", 42, false)
+    drawLevelTab2(745, 330, 40, 20, 1, 6, "#c3c3c3", 9, false)
+    drawLevelTab2(745, 390, 40, 20, 1, 6, "#c3c3c3", 15, false)
+    drawLevelTab2(745, 410, 40, 20, 1, 6, "#c3c3c3", 21, false)
+    drawLevelTab2(405, 490, 40, 20, 1, 8, "#3470cb", 35, false)
+    drawLevelTab2(745, 490, 40, 20, 1, 6, "#c3c3c3", 27, false)
 
+    
+    
+  // 绘制过道线条
+
+  cxt.beginPath();
+  cxt.strokeStyle  = '#3470cb' //填充颜色
+  cxt.lineWidth = 4;
+  cxt.moveTo(270, 75);
+  cxt.lineTo(270, 217);
+  cxt.moveTo(270, 217);  
+  cxt.lineTo(1060, 217);
+  cxt.closePath();
+  cxt.stroke();
+  cxt.beginPath();
+  cxt.strokeStyle  = '#3470cb' //填充颜色
+  cxt.lineWidth = 4;
+  cxt.moveTo(270, 255);
+  cxt.lineTo(270, 320);
+  cxt.moveTo(270, 320);  
+  cxt.lineTo(715, 320);
+  cxt.closePath();
+  cxt.stroke();
+  cxt.beginPath();
+  cxt.strokeStyle  = '#3470cb' //填充颜色
+  cxt.lineWidth = 4;
+  cxt.moveTo(745, 320);
+  cxt.lineTo(985, 320);
+  cxt.closePath();
+  cxt.stroke();
+  cxt.beginPath();
+  cxt.strokeStyle  = '#3470cb' //填充颜色
+  cxt.lineWidth = 4;
+  cxt.moveTo(1015, 320);
+  cxt.lineTo(1060, 320);
+  cxt.closePath();
+  cxt.stroke();
+  }
+
+  // 绘制logo字体
   function drawScreen() {
+    cxt.beginPath();
+    
     // cxt.strokeStyle = '#374A68'; //边框颜色
     cxt.fillStyle = '#374A68' //填充颜色
     // cxt.lineWidth = 4;
-    cxt.beginPath();
     cxt.moveTo(40, 120);
     cxt.lineTo(90, 120);
     cxt.lineTo(90, 220);
@@ -51,38 +123,15 @@
    row: 几行
    list:  几列
   */
-  // cxt.beginPath()
-  // drawVerticalTab(50, 390, 20, 40, 1, 3)
-  // cxt.closePath()
-
-  function drawVerticalTab(beginX, beginY, w, h, row, list) {
-    for (r = 1; r <= row; r++) { //控制画多少行
-      for (l = 1; l <= list; l++) { //控制画多少列
-        x = beginX + (r - 1) * w;
-        y = beginY + (l - 1) * h;
-        x_zuobiao = x; //字的横坐标
-        y_zuobiao = y + 25; //字的纵坐标
-        cxt.rect(x, y, w, h); //边框的四个点坐标
-        cxt.font = "bold 14px 宋体"
-        // cxt.fillStyle = '#0000ff' //填充颜色
-        cxt.strokeStyle = '#0000ff' //填充颜色        
-        cxt.fillText("33", x_zuobiao + w / 8 + 20, y_zuobiao);
-      }
-    }
-    cxt.stroke();
-  }
-
-//竖直表格
-drawVerticalTab(50, 390, 20, 40, 3, 1)
-
-  function drawVerticalTab(beginX, beginY, w, h, row, list) {
+  function drawVerticalTab(beginX, beginY, w, h, row, list, bgColor, topNum, add) {
     cxt.beginPath()
-    cxt.fillStyle = "#c3c3c3" //背景色
+    cxt.fillStyle = bgColor //背景色
     // 绘制外边框
     cxt.moveTo(beginX, beginY);
     cxt.lineTo(beginX + list * w, beginY);
     cxt.lineTo(beginX + list * w, beginY + row * h);
     cxt.lineTo(beginX, beginY + row * h);
+    cxt.lineTo(beginX, beginY);
     cxt.fill();
     // 绘制分割线, 内容填充
     for (let l = 1; l <= list; l++) {
@@ -92,17 +141,18 @@ drawVerticalTab(50, 390, 20, 40, 3, 1)
         cxt.font = "bold 14px 宋体"
         cxt.fillStyle = "#fff"
         // 开始坐标向右移动
-        cxt.fillText("33", beginX + (l - 1) * w + w / 8, beginY + (h * r) - h / 2);
+        if (add) {
+          cxt.fillText(topNum++, beginX + (l - 1) * w + w / 8, beginY + (h * r) - h / 2);
+        } else {
+          cxt.fillText(topNum--, beginX + (l - 1) * w + w / 8, beginY + (h * r) - h / 2);
+        }
       }
     }
     cxt.stroke();
     cxt.closePath()
   }
-
-  // 水平表格   一行一列
-  drawLevelTab(120,255,120,20,1,1)
-
-  function drawLevelTab(beginX, beginY, w, h, row, list) {
+  // 绘制水平表格   一列一行  多列一行
+  function drawLevelTab(beginX, beginY, w, h, row, list, num) {
     cxt.beginPath()
     cxt.fillStyle = "#c3c3c3" //背景色
     // 绘制外边框
@@ -110,54 +160,57 @@ drawVerticalTab(50, 390, 20, 40, 3, 1)
     cxt.lineTo(beginX + list * w, beginY);
     cxt.lineTo(beginX + list * w, beginY + row * h);
     cxt.lineTo(beginX, beginY + row * h);
+    cxt.lineTo(beginX, beginY);
     cxt.fill();
     // 绘制分割线, 内容填充
     for (let l = 1; l <= list; l++) {
-      for (let r = 1; r <=row ; r++) {
-        cxt.moveTo(beginX + w/l, beginY);
-        cxt.lineTo(beginX + w/l, beginY +(l-1) * h);
+      for (let r = 1; r <= row; r++) {
+        cxt.moveTo(beginX + w / l, beginY);
+        cxt.lineTo(beginX + w / l, beginY + (l - 1) * h);
         cxt.font = "bold 14px 宋体"
         cxt.fillStyle = "#fff"
         // 开始坐标向右移动
 
-        cxt.fillText("33", beginX + (l - 1) * w/2 + w / 2.3, beginY + (h * r) - h / 4);
+        cxt.fillText(num, beginX + (l - 1) * w / 2 + w / 2.3, beginY + (h * r) - h / 4);
       }
     }
     cxt.stroke();
     cxt.closePath()
   }
-    
-  // 水平表格 一行多列
-  drawLevelTab2(160,200,80,20,1,2,"#c3c3c3")
-  drawLevelTab2(410,485,320,20,1,8,"#0000ff")
-  
-  function drawLevelTab2(beginX, beginY, w, h, row, list,bgcolor) {
+
+  function drawLevelTab2(beginX, beginY, w, h, row, list, bgcolor, leftNum, add) {
     cxt.beginPath()
     cxt.fillStyle = bgcolor //背景色
     // 绘制外边框
     cxt.moveTo(beginX, beginY);
-    cxt.lineTo(beginX + w, beginY);
-    cxt.lineTo(beginX + w, beginY + row * h);
+    cxt.lineTo(beginX + w * list, beginY);
+    cxt.lineTo(beginX + w * list, beginY + row * h);
     cxt.lineTo(beginX, beginY + row * h);
+    cxt.lineTo(beginX, beginY);
     cxt.fill();
     // 绘制分割线, 内容填充
     for (let l = 1; l <= list; l++) {
-      for (let r = 1; r <=row ; r++) {
-        cxt.moveTo(beginX+(w/list)*l, beginY);
-        cxt.lineTo(beginX+(w/list)*l, beginY + r * h);
+      for (let r = 1; r <= row; r++) {
+        cxt.moveTo(beginX + w * l, beginY);
+        cxt.lineTo(beginX + w * l, beginY + r * h);
         cxt.font = "bold 14px 宋体"
         cxt.fillStyle = "#fff"
         // 开始坐标向右移动
-       /*
-         beginX + (l- 1) * (w/list) + (w/list) / 3   基础x坐标加上第几个块,加上偏移量
-         beginY + (h * r) - h / 4)   基础y坐标 加上偏移量
-        */
-        cxt.fillText("33", beginX + (l- 1) * (w/list) + (w/list) / 3, beginY + (h * r) - h / 4);
+        /*
+          beginX + (l- 1) * w + w / 3   基础x坐标加上第几个块,加上偏移量
+          beginY + (h * r) - h / 4)   基础y坐标 加上偏移量
+         */
+        if (add) {
+          cxt.fillText(leftNum++, beginX + (l - 1) * w + w / 3, beginY + (h * r) - h / 4);
+        } else {
+          cxt.fillText(leftNum--, beginX + (l - 1) * w + w / 3, beginY + (h * r) - h / 4);
+        }
       }
     }
     cxt.stroke();
     cxt.closePath()
   }
+
 </script>
 
 </html>
