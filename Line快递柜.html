@@ -56,48 +56,48 @@
     drawLevelTab2(405, 490, 40, 20, 1, 8, "#3470cb", 35, false)
     drawLevelTab2(745, 490, 40, 20, 1, 6, "#c3c3c3", 27, false)
 
-    
-    
-  // 绘制过道线条
 
-  cxt.beginPath();
-  cxt.strokeStyle  = '#3470cb' //填充颜色
-  cxt.lineWidth = 4;
-  cxt.moveTo(270, 75);
-  cxt.lineTo(270, 217);
-  cxt.moveTo(270, 217);  
-  cxt.lineTo(1060, 217);
-  cxt.closePath();
-  cxt.stroke();
-  cxt.beginPath();
-  cxt.strokeStyle  = '#3470cb' //填充颜色
-  cxt.lineWidth = 4;
-  cxt.moveTo(270, 255);
-  cxt.lineTo(270, 320);
-  cxt.moveTo(270, 320);  
-  cxt.lineTo(715, 320);
-  cxt.closePath();
-  cxt.stroke();
-  cxt.beginPath();
-  cxt.strokeStyle  = '#3470cb' //填充颜色
-  cxt.lineWidth = 4;
-  cxt.moveTo(745, 320);
-  cxt.lineTo(985, 320);
-  cxt.closePath();
-  cxt.stroke();
-  cxt.beginPath();
-  cxt.strokeStyle  = '#3470cb' //填充颜色
-  cxt.lineWidth = 4;
-  cxt.moveTo(1015, 320);
-  cxt.lineTo(1060, 320);
-  cxt.closePath();
-  cxt.stroke();
+
+    // 绘制过道线条
+
+    cxt.beginPath();
+    cxt.strokeStyle = '#3470cb' //填充颜色
+    cxt.lineWidth = 4;
+    cxt.moveTo(270, 75);
+    cxt.lineTo(270, 217);
+    cxt.moveTo(270, 217);
+    cxt.lineTo(1060, 217);
+    cxt.closePath();
+    cxt.stroke();
+    cxt.beginPath();
+    cxt.strokeStyle = '#3470cb' //填充颜色
+    cxt.lineWidth = 4;
+    cxt.moveTo(270, 255);
+    cxt.lineTo(270, 320);
+    cxt.moveTo(270, 320);
+    cxt.lineTo(715, 320);
+    cxt.closePath();
+    cxt.stroke();
+    cxt.beginPath();
+    cxt.strokeStyle = '#3470cb' //填充颜色
+    cxt.lineWidth = 4;
+    cxt.moveTo(745, 320);
+    cxt.lineTo(985, 320);
+    cxt.closePath();
+    cxt.stroke();
+    cxt.beginPath();
+    cxt.strokeStyle = '#3470cb' //填充颜色
+    cxt.lineWidth = 4;
+    cxt.moveTo(1015, 320);
+    cxt.lineTo(1060, 320);
+    cxt.closePath();
+    cxt.stroke();
   }
 
   // 绘制logo字体
   function drawScreen() {
     cxt.beginPath();
-    
+
     // cxt.strokeStyle = '#374A68'; //边框颜色
     cxt.fillStyle = '#374A68' //填充颜色
     // cxt.lineWidth = 4;
@@ -211,6 +211,13 @@
     cxt.closePath()
   }
 
+
+  function convertCanvasToImage(canvas) {
+    var canvas = document.querySelector("#canvas");
+    var image = new Image();
+    image.src = canvas.toDataURL("image/png");
+    return image;
+  }
 </script>
 
 </html>
